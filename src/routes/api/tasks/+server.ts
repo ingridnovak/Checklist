@@ -76,8 +76,9 @@ export async function DELETE({ request }) {
   if (!id) return json({ error: "ID is required" }, { status: 400 });
 
   try {
-    await drizzleDb.delete(tasks).where(eq(tasks.id, id));
+    // Delete task_status rows first, then the task
     await drizzleDb.delete(task_status).where(eq(task_status.task_id, id));
+    await drizzleDb.delete(tasks).where(eq(tasks.id, id));
     return json({ success: true });
   } catch (e) {
     console.error("DELETE error", e);

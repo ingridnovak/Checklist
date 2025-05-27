@@ -5,6 +5,8 @@
   let newTask = "";
   let date = new Date().toISOString().split("T")[0];
 
+  $: isToday = date === new Date().toISOString().split("T")[0];
+
   async function fetchTasks() {
     const res = await fetch(`/api/tasks?date=${date}`);
     tasks = await res.json();
@@ -73,13 +75,19 @@
       <input
         type="checkbox"
         checked={task.isCompleted}
+        disabled={!isToday}
         on:change={() => toggleTask(task.id, task.isCompleted)}
       />
       <span class:line-through={task.isCompleted}>{task.title}</span>
       <button
-        on:click={() => deleteTask(task.id)}
+        on:click={() => {
+          if (window.confirm("Are you sure you want to delete this task?")) {
+            deleteTask(task.id);
+          }
+        }}
         class="text-red-500 ml-auto"
         aria-label="Delete"
+        disabled={!isToday}
       >
         ✕
       </button>
