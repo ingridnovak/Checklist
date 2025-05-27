@@ -1,0 +1,34 @@
+{
+	"name": "checklist",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"migrate:run": "tsx scripts/migrate.ts",
+		"migrate:generate": "drizzle-kit generate"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^6.0.0",
+		"@sveltejs/kit": "^2.16.0",
+		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@types/better-sqlite3": "^7.6.13",
+		"drizzle-kit": "^0.31.1",
+		"svelte": "^5.0.0",
+		"svelte-check": "^4.0.0",
+		"tsx": "^4.19.4",
+		"typescript": "^5.0.0",
+		"vite": "^6.2.6"
+	},
+	"dependencies": {
+		"better-sqlite3": "^11.10.0",
+		"drizzle-orm": "^0.43.1",
+		"sqlite": "^5.1.1",
+		"sqlite3": "^5.1.7"
+	}
+}
